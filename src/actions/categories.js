@@ -11,10 +11,9 @@ const loadedCategories = (categories) => ({
 
 
 export const loadCategories = () =>
-  (dispatch) => {
+  (dispatch) =>
     fetch(`${HOST}/api/categories`, { headers: { Authorization: 'something' }})
       .then(response => response.json())
       .then(body => body.categories)
       .then(c => dispatch(loadedCategories(c)))
-  }
 ;
