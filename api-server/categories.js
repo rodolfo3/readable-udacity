@@ -32,7 +32,10 @@ function getData (token) {
 
 function getAll (token) {
   return new Promise((res) => {
-    res(getData(token))
+    setTimeout(
+      () => res(getData(token)),
+      1000
+    )
   })
 }
 
