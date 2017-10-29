@@ -12,7 +12,6 @@ export const withActions = actions => OriginalComponent => {
     }
 
     componentDidMount() {
-setTimeout(() => {
       if (actions.length) {
         const { dispatch } = this.props;
         Promise.all(actions.map(act => dispatch(act)))
@@ -23,7 +22,6 @@ setTimeout(() => {
       } else {
           this.setState({ loaded: true });
       }
-}, 300);
     }
 
     render() {
