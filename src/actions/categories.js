@@ -1,4 +1,4 @@
-const HOST = `${window.location.protocol}//${window.location.hostname}:3001`;
+import { HOST, getAuthorization } from './config';
 
 
 export const LOADED = 'CATEGORIES_LOADED';
@@ -12,7 +12,7 @@ const loadedCategories = (categories) => ({
 
 export const loadCategories = () =>
   (dispatch) =>
-    fetch(`${HOST}/api/categories`, { headers: { Authorization: 'something' }})
+    fetch(`${HOST}/api/categories`, { headers: { Authorization: getAuthorization() }})
       .then(response => response.json())
       .then(body => body.categories)
       .then(c => dispatch(loadedCategories(c)))
