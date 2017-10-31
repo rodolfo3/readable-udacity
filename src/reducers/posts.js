@@ -1,10 +1,23 @@
+import { combineReducers } from 'redux';
 import { LOADED } from '../actions/posts';
 
 
-const posts = (state = null, action) => {
+const byId = (state = {}, action) => {
   switch (action.type) {
     case LOADED:
-      return action.posts;
+      const newPosts = action.posts.reduce((acc, p) => ({...acc, [p.id]: p}), {});
+      return ({...state, ...newPosts});
+
+    default:
+      return state;
+  }
+};
+
+const byCategory = (state = {}, action) => {
+  switch (action.type) {
+    case LOADED:
+      const postIds = action.posts.map(p => p.id)
+      return {...state, [action.categoryPath]: postIds };
 
     default:
       return state;
@@ -12,4 +25,4 @@ const posts = (state = null, action) => {
 }
 
 
-export default posts;
+export default combineReducers({ byId, byCategory });

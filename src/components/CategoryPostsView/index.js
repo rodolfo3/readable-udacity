@@ -25,8 +25,9 @@ const mapStateToProps = (state, props) => {
   const { params } = props.match;
   const { path } = params;
 
+  const postIds = state.posts.byCategory[path];
+  const posts = postIds && postIds.map(id => state.posts.byId[id]);
   const category = state.categories && state.categories.find(c => c.path === path);
-  const posts = state.posts;
 
   return {
     category,
