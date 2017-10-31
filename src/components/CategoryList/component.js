@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const CategoryItem = ({ name, path }) =>
   <li>
-    name={name}; path={path}
+    <Link to={`/categories/${path}`}>
+        name={name}; path={path}
+    </Link>
   </li>
 ;
 

@@ -5,13 +5,24 @@ import { connect } from 'react-redux';
 const Loading = () => <strong>Loading...</strong>;
 
 
-export const withActions = actions => OriginalComponent => {
+const buildActions = (actions, props) => {
+  if (typeof actions === 'function') {
+    return actions(props);
+  } else {
+    return actions;
+  }
+}
+
+
+export const withActions = acts => OriginalComponent => {
   class WithActioncComponent extends Component {
     state = {
       loaded: false,
     }
 
     componentDidMount() {
+      const actions = buildActions(acts, this.props);
+
       if (actions.length) {
         const { dispatch } = this.props;
         Promise.all(actions.map(act => dispatch(act)))
