@@ -3,6 +3,7 @@ import { LOADED } from '../actions/posts';
 
 
 const byId = (state = {}, action) => {
+console.log('byId', action, action.type === LOADED);
   switch (action.type) {
     case LOADED:
       const newPosts = action.posts.reduce((acc, p) => ({...acc, [p.id]: p}), {});
@@ -16,8 +17,12 @@ const byId = (state = {}, action) => {
 const byCategory = (state = {}, action) => {
   switch (action.type) {
     case LOADED:
-      const postIds = action.posts.map(p => p.id)
-      return {...state, [action.categoryPath]: postIds };
+      if (action.categoryPath) {
+        const postIds = action.posts.map(p => p.id)
+        return {...state, [action.categoryPath]: postIds };
+      } else {
+        return state;
+      }
 
     default:
       return state;
