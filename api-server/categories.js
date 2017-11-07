@@ -34,7 +34,7 @@ function getAll (token) {
   return new Promise((res) => {
     setTimeout(
       () => res(getData(token)),
-      1000
+      100
     )
   })
 }
