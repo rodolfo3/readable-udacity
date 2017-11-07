@@ -5,6 +5,7 @@ import './App.css';
 import CategoryList from './CategoryList';
 import CategoryPostsView from './CategoryPostsView';
 import PostView from './PostView';
+import PostForm from './PostForm';
 
 import GenericNotFound from './GenericNotFound';
 
@@ -16,6 +17,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={CategoryList} />
           <Route exact path="/categories/:path" component={CategoryPostsView} />
+          <Route exact path="/posts/new" component={PostForm} />
           <Route exact path="/posts/:id" component={PostView} />
           <Route exact path='*' component={GenericNotFound} />
         </Switch>

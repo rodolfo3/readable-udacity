@@ -2,6 +2,8 @@ import { HOST, getAuthorization } from './config';
 
 
 export const LOADED = 'POSTS_LOADED';
+export const SAVE_ERROR = 'POST_SAVE_ERROR';
+export const SAVED = 'POST_SAVED';
 
 
 const loadedCategoryPosts = (categoryPath, posts) => ({
@@ -32,3 +34,42 @@ export const loadCategoryPosts = (categoryPath) =>
       .then(response => response.json())
       .then(ps => dispatch(loadedCategoryPosts(categoryPath, ps)))
 ;
+
+
+const validatePost = (postData) => {
+  // TODO
+  return false;
+};
+
+const saveError = (errors) => ({
+  type: SAVE_ERROR,
+  errors,
+})
+
+
+const persistPost = (postData) =>
+  (dispatch) =>
+    fetch(
+      `${HOST}/api/posts`,
+      { method: 'POST', body: JSON.stringify(postData), headers: {'content-type': 'application/json'} }
+    )
+    .then(response => response.json())
+    .then(
+      post => dispatch({
+        type: SAVED,
+        posts: [ post ],
+        categoryPath: post.category,
+      })
+    );
+;
+
+export const savePost = (postData) =>
+  (dispatch) => {
+    const errors = validatePost(postData);
+    console.log(errors);
+    if (errors) {
+      return dispatch(saveError(errors));
+    } else {
+      return dispatch(persistPost(postData));
+    }
+  }
