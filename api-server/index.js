@@ -7,6 +7,7 @@ const config = require('./config')
 const categories = require('./categories')
 const posts = require('./posts')
 const comments = require('./comments')
+const uuidv4 = require('uuid/v4')
 
 const app = express()
 
@@ -166,7 +167,8 @@ app.get('/api/posts', (req, res) => {
 })
 
 app.post('/api/posts', bodyParser.json(), (req, res) => {
-    posts.add(req.token, req.body)
+    const post = Object.assign({}, req.body, {id: uuidv4(), timestamp: Date.now()});
+    posts.add(req.token, post)
       .then(
           (data) => res.send(data),
           (error) => {
