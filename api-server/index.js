@@ -15,6 +15,9 @@ app.use(express.static('public'))
 app.use(cors())
 
 
+const addDefaultFields = data => Object.assign({}, data, {id: uuidv4(), timestamp: Date.now()});
+
+
 app.get('/api/', (req, res) => {
   const help = `
   <pre>
@@ -167,7 +170,7 @@ app.get('/api/posts', (req, res) => {
 })
 
 app.post('/api/posts', bodyParser.json(), (req, res) => {
-    const post = Object.assign({}, req.body, {id: uuidv4(), timestamp: Date.now()});
+    const post = addDefaultFields(req.body);
     posts.add(req.token, post)
       .then(
           (data) => res.send(data),
@@ -275,7 +278,7 @@ app.put('/api/comments/:id', bodyParser.json(), (req, res) => {
 })
 
 app.post('/api/comments', bodyParser.json(), (req, res) => {
-    comments.add(req.token, req.body)
+    comments.add(req.token, addDefaultFields(req.body))
       .then(
           (data) => res.send(data),
           (error) => {
