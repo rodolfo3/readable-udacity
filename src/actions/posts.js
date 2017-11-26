@@ -48,11 +48,14 @@ const saveError = (errors) => ({
 
 
 const persistPost = (postData) =>
-  (dispatch) =>
-    fetch(
-      `${HOST}/api/posts`,
+  (dispatch) => {
+    const { id } = postData;
+    const url = id ? `${HOST}/api/posts/${id}` : `${HOST}/api/posts`;
+    const method = id ? 'PUT' : 'POST';
+    return fetch(
+      url,
       {
-        method: 'POST',
+        method,
         body: JSON.stringify(postData),
         headers: {
           'content-type': 'application/json',
@@ -68,7 +71,7 @@ const persistPost = (postData) =>
         categoryPath: post.category,
       })
     );
-;
+};
 
 export const savePost = (postData) =>
   (dispatch) => {

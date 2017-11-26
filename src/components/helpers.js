@@ -37,7 +37,7 @@ export const withActions = acts => OriginalComponent => {
 
     render() {
       if (this.state.loaded) {
-console.log('component');
+console.log('component', this.props);
         return <OriginalComponent {...this.props} />
       }
 console.log('loading');
