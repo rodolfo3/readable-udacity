@@ -56,7 +56,7 @@ const persistPost = (postData) =>
           posts: [ post ],
           categoryPath: post.category,
         })
-      );
+      )
 ;
 
 export const savePost = (postData) =>

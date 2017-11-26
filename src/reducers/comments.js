@@ -1,10 +1,18 @@
 import { combineReducers } from 'redux';
 
-import { LOADED } from '../actions/comments';
+import { SAVED, LOADED } from '../actions/comments';
 
 
 const byPostId = (state = {}, action) => {
   switch (action.type) {
+    case SAVED:
+      const { comment } = action;
+      const { parentId } = comment;
+
+      return {
+        ...state,
+        [parentId]: [...state[parentId] || [], comment.id],
+      };
     case LOADED:
       const postIds = action.comments.map(c => c.parentId);
       const comments = postIds.map(
@@ -21,6 +29,9 @@ const byPostId = (state = {}, action) => {
 
 const byId = (state = {}, action) => {
   switch (action.type) {
+    case SAVED:
+      const { comment } = action;
+      return {...state, [comment.id]: comment};
     case LOADED:
       const newComments = action.comments.reduce(
         (acc, comment) => ({...acc, [comment.id]: comment}),

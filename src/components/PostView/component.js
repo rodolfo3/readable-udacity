@@ -1,4 +1,5 @@
 import React from 'react';
+import AddComment from './AddComment';
 
 
 const Comment = ({ body, author }) =>
@@ -20,6 +21,7 @@ const PostView = ({ post, comments }) =>
     <section>
       { comments && comments.map(c => <Comment key={c.id} {...c} />) }
     </section>
+    <AddComment />
   </article>
 ;
 
