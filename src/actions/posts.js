@@ -51,7 +51,14 @@ const persistPost = (postData) =>
   (dispatch) =>
     fetch(
       `${HOST}/api/posts`,
-      { method: 'POST', body: JSON.stringify(postData), headers: {'content-type': 'application/json'} }
+      {
+        method: 'POST',
+        body: JSON.stringify(postData),
+        headers: {
+          'content-type': 'application/json',
+          Authorization: getAuthorization(),
+        }
+      }
     )
     .then(response => response.json())
     .then(
