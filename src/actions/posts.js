@@ -1,5 +1,5 @@
 import { HOST, getAuthorization } from './config';
-
+import { persist } from './_helpers';
 
 export const LOADED = 'POSTS_LOADED';
 export const SAVE_ERROR = 'POST_SAVE_ERROR';
@@ -48,30 +48,16 @@ const saveError = (errors) => ({
 
 
 const persistPost = (postData) =>
-  (dispatch) => {
-    const { id } = postData;
-    const url = id ? `${HOST}/api/posts/${id}` : `${HOST}/api/posts`;
-    const method = id ? 'PUT' : 'POST';
-    return fetch(
-      url,
-      {
-        method,
-        body: JSON.stringify(postData),
-        headers: {
-          'content-type': 'application/json',
-          Authorization: getAuthorization(),
-        }
-      }
-    )
-    .then(response => response.json())
-    .then(
-      post => dispatch({
-        type: SAVED,
-        posts: [ post ],
-        categoryPath: post.category,
-      })
-    );
-};
+  (dispatch) =>
+    persist(postData, 'posts')
+      .then(
+        post => dispatch({
+          type: SAVED,
+          posts: [ post ],
+          categoryPath: post.category,
+        })
+      );
+;
 
 export const savePost = (postData) =>
   (dispatch) => {
