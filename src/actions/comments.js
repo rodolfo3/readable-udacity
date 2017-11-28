@@ -5,6 +5,7 @@ import { persist } from './_helpers';
 export const LOADED = 'COMMENTS_LOADED';
 export const SAVE_ERROR = 'COMMENTS_SAVE_ERROR';
 export const SAVED = 'COMMENTS_SAVED';
+export const DELETED = 'COMMENTS_DELETED';
 
 
 const loadedComments = (comments) => ({
@@ -12,6 +13,10 @@ const loadedComments = (comments) => ({
   comments,
 });
 
+const deletedComment = ({ comment }) => ({
+  type: DELETED,
+  comment,
+});
 
 const persistComment = (commentData) =>
   (dispatch) => {
@@ -38,3 +43,19 @@ export const saveComment = (commentData) =>
     return dispatch(persistComment(commentData));
   }
 ;
+
+
+export const deleteComment = ({ id }) =>
+  (dispatch, getState) =>
+    fetch(
+      `${HOST}/api/comments/${id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: getAuthorization() },
+      },
+    ).then(
+      () => {
+        const comment = getState().comments.byId[id];
+        return dispatch(deletedComment({ comment }));
+      }
+    )

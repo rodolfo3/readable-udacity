@@ -7,18 +7,26 @@ const PostVote = (props) => <Vote kind='posts' {...props} />;
 const CommentVote = (props) => <Vote kind='comments' {...props} />;
 
 
-const Comment = ({ id, body, author }) =>
+const DeleteComment = ({ id, deleteComment}) =>
+  <button onClick={() => deleteComment(id)}>
+    &times;
+  </button>
+;
+
+
+const Comment = ({ id, body, author, deleteComment }) =>
   <p>
     { author } says:
     <blockquote>
       { body }
     </blockquote>
     <CommentVote id={id} />
+    <DeleteComment id={id} deleteComment={deleteComment} />
   </p>
 ;
 
 
-const PostView = ({ post, comments }) =>
+const PostView = ({ post, comments, deleteComment }) =>
   <article>
     <section>
       <h2>{ post.title }</h2>
@@ -26,7 +34,7 @@ const PostView = ({ post, comments }) =>
       <PostVote id={post.id} />
     </section>
     <section>
-      { comments && comments.map(c => <Comment key={c.id} {...c} />) }
+      { comments && comments.map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
     </section>
     <AddComment />
   </article>

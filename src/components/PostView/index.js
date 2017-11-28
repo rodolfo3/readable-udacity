@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { withActions } from '../helpers';
 
 import { loadPost } from '../../actions/posts';
-import { loadPostComments } from '../../actions/comments';
+import { loadPostComments, deleteComment } from '../../actions/comments';
 
 import component from './component';
 
@@ -39,6 +39,7 @@ const mapStateToProps = (state, props) => {
 
 
 const mapDispatchToProps = dispatch => ({
+  deleteComment: (id) => dispatch(deleteComment({ id }))
 });
 
 
