@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { withActions } from '../helpers';
 
-import { loadPost } from '../../actions/posts';
+import { loadPost, deletePost } from '../../actions/posts';
 import { loadPostComments, deleteComment } from '../../actions/comments';
 
 import component from './component';
@@ -38,9 +38,13 @@ const mapStateToProps = (state, props) => {
 };
 
 
-const mapDispatchToProps = dispatch => ({
-  deleteComment: (id) => dispatch(deleteComment({ id }))
-});
+const mapDispatchToProps = (dispatch, props) => {
+  const { history } = props;
+  return {
+    deleteComment: (id) => dispatch(deleteComment({ id })),
+    deletePost: (id) => dispatch(deletePost({ id })).then(() => history.push('/'))
+  };
+};
 
 
 export default

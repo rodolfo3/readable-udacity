@@ -4,6 +4,7 @@ import { persist } from './_helpers';
 export const LOADED = 'POSTS_LOADED';
 export const SAVE_ERROR = 'POST_SAVE_ERROR';
 export const SAVED = 'POST_SAVED';
+export const DELETED = 'POST_DELETED';
 
 
 const loadedCategoryPosts = (categoryPath, posts) => ({
@@ -69,3 +70,24 @@ export const savePost = (postData) =>
       return dispatch(persistPost(postData));
     }
   }
+;
+
+const deletedPost = ({ post }) => ({
+  type: DELETED,
+  post,
+});
+
+export const deletePost = ({ id }) =>
+  (dispatch, getState) =>
+    fetch(
+      `${HOST}/api/posts/${id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: getAuthorization() },
+      },
+    ).then(
+      () => {
+        const post = getState().posts.byId[id];
+        return dispatch(deletedPost({ post }));
+      }
+    );
