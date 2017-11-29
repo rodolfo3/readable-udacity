@@ -1,9 +1,19 @@
 import { combineReducers } from 'redux';
-import { LOADED, SAVED } from '../actions/posts';
+import { LOADED, SAVED, DELETED } from '../actions/posts';
 
 
 const byId = (state = {}, action) => {
   switch (action.type) {
+    case DELETED:
+      const { post } = action;
+      const { id } = post;
+
+      return Object.keys(state)
+        .filter(post => post.id !== id)
+        .reduce((obj, key) => {
+          obj[key] = state[key];
+          return obj;
+        }, {});
     case LOADED:
     case SAVED:
       const newPosts = action.posts.reduce((acc, p) => ({...acc, [p.id]: p}), {});
@@ -16,6 +26,13 @@ const byId = (state = {}, action) => {
 
 const byCategory = (state = {}, action) => {
   switch (action.type) {
+    case DELETED:
+      const { post } = action;
+      const { category }  = post;
+      return {
+        ...state,
+        [category]: state[category].filter(i => i !== post.id),
+      };
     case SAVED:
     case LOADED:
       if (action.categoryPath) {
