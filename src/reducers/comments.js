@@ -1,10 +1,18 @@
 import { combineReducers } from 'redux';
 
 import { SAVED, LOADED, DELETED } from '../actions/comments';
+import { DELETED as POST_DELETED } from '../actions/posts';
 
 
 const byPostId = (state = {}, action) => {
   switch (action.type) {
+    case POST_DELETED:
+        return Object.keys(state)
+          .filter(id => id !== action.post.id)
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {});
     case DELETED:
       return (() => {
         const { comment } = action;
