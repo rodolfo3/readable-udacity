@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import Actions from '../Actions';
 import CategoryList from '../CategoryList';
 import PostList from '../PostList';
 
@@ -15,11 +15,7 @@ const Home = () =>
       <h2>Posts</h2>
       <PostList />
     </section>
-    <section>
-      <Link to="/posts/new">
-        Add new post
-      </Link>
-    </section>
+    <Actions />
   </div>
 ;
 
