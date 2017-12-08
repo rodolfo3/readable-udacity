@@ -24,16 +24,21 @@ const EditPost = ({ id }) =>
 
 
 
-const Comment = ({ id, body, author, deleteComment }) =>
+const Comment = ({ id, body, author, voteScore, deleteComment }) =>
   <p>
     { author } says:
     <blockquote>
       { body }
     </blockquote>
-    <CommentVote id={id} />
+    <CommentVote id={id} voteScore={voteScore} />
     <Delete id={id} action={deleteComment} />
     <hr />
   </p>
+;
+
+
+const sortComments = (comments, sortField = 'voteScore') =>
+  comments.sort((a, b) => a[sortField] - b[sortField]).reverse();
 ;
 
 
@@ -60,7 +65,7 @@ const PostView = ({ post, comments, deleteComment, deletePost }) =>
       <hr />
     </section>
     <section>
-      { comments && comments.map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
+      { comments && sortComments(comments).map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
     </section>
     <AddComment />
   </article>
