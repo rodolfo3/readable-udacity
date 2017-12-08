@@ -14,9 +14,12 @@ const loadedCategoryPosts = (categoryPath, posts) => ({
 });
 
 
-const loadedPost = (post) => ({
+const loadedPost = (post) => loadedPosts([post]);
+
+
+const loadedPosts = (posts) => ({
   type: LOADED,
-  posts: [post],
+  posts,
 });
 
 
@@ -34,6 +37,14 @@ export const loadCategoryPosts = (categoryPath) =>
     fetch(`${HOST}/api/${categoryPath}/posts`, { headers: { Authorization: getAuthorization() }})
       .then(response => response.json())
       .then(ps => dispatch(loadedCategoryPosts(categoryPath, ps)))
+;
+
+
+export const loadAllPosts = () =>
+  (dispatch) =>
+    fetch(`${HOST}/api/posts`, { headers: { Authorization: getAuthorization() }})
+      .then(response => response.json())
+      .then(ps => dispatch(loadedPosts(ps)))
 ;
 
 
