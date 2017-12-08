@@ -48,7 +48,7 @@ const PostView = ({ post, comments, deleteComment, deletePost }) =>
         { post.body }
       </article>
       <hr />
-      <PostVote id={post.id} />
+      <PostVote id={post.id} voteScore={post.voteScore} />
       <hr />
       <EditPost id={post.id} />
       <Delete id={post.id} action={deletePost} />

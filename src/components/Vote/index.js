@@ -6,15 +6,17 @@ import { withActions } from '../helpers';
 import { vote } from '../../actions/vote';
 
 
-const Vote = ({ up, down }) =>
+const Vote = ({ up, down, voteScore = null }) =>
   <div>
     <button onClick={up}>Up</button>
+    { voteScore }
     <button onClick={down}>Down</button>
   </div>
 ;
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
+  voteScore: props.voteScore,
 });
 
 
