@@ -14,7 +14,7 @@ const loadedCategoryPosts = (categoryPath, posts) => ({
 });
 
 
-const loadedPost = (post) => loadedPosts([post]);
+export const loadedPost = (post) => loadedPosts([post]);
 
 
 const loadedPosts = (posts) => ({

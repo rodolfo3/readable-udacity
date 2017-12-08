@@ -3,6 +3,7 @@ import { persist } from './_helpers';
 
 
 export const LOADED = 'COMMENTS_LOADED';
+export const LOADED_ONE = 'COMMENTS_LOADED_ONE';
 export const SAVE_ERROR = 'COMMENTS_SAVE_ERROR';
 export const SAVED = 'COMMENTS_SAVED';
 export const DELETED = 'COMMENTS_DELETED';
@@ -12,6 +13,12 @@ const loadedComments = (comments) => ({
   type: LOADED,
   comments,
 });
+
+
+export const loadedComment = (comment) => ({
+  type: LOADED_ONE,
+  comment,
+})
 
 const deletedComment = ({ comment }) => ({
   type: DELETED,

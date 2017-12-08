@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SAVED, LOADED, DELETED } from '../actions/comments';
+import { SAVED, LOADED, LOADED_ONE, DELETED } from '../actions/comments';
 import { DELETED as POST_DELETED } from '../actions/posts';
 
 
@@ -65,7 +65,11 @@ const byId = (state = {}, action) => {
         (acc, comment) => ({...acc, [comment.id]: comment}),
         {}
       );
+      console.log('newComments', newComments);
       return {...state, ...newComments};
+    case LOADED_ONE:
+      const com = action.comment;
+      return {...state, [com.id]: com};
 
     default:
       return state;

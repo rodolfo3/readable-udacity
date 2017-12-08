@@ -1,18 +1,38 @@
 import { HOST, getAuthorization } from './config';
 
+import { loadedPost } from './posts';
+import { loadedComment } from './comments';
 
-export const vote = ({ kind, id, type }) => {
-  return fetch(
-    `${HOST}/api/${kind}/${id}`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        option: `${type}Vote`,
-      }),
-      headers: {
-        'content-type': 'application/json',
-        Authorization: getAuthorization(),
+const BY_TYPE = {
+  'posts': loadedPost,
+  'comments': loadedComment,
+}
+
+
+const computeVote = ({ kind, id, type }) => ({
+  type: BY_TYPE[type],
+  kind,
+  id,
+});
+
+
+export const vote = ({ kind, id, type }) =>
+  (dispatch) => {
+    console.log('VOTE');
+    return fetch(
+      `${HOST}/api/${kind}/${id}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          option: `${type}Vote`,
+        }),
+        headers: {
+          'content-type': 'application/json',
+          Authorization: getAuthorization(),
+        }
       }
-    }
-  )
-};
+    )
+    .then(response => response.json())
+    .then(response => dispatch(BY_TYPE[kind](response)))
+  }
+;

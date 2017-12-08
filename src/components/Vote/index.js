@@ -23,8 +23,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = (dispatch, props) => {
   const { kind, id } = props;
   return {
-    up: () => vote({kind, id, type: 'up'}),
-    down: () => vote({kind, id, type: 'down'}),
+    up: () => dispatch(vote({kind, id, type: 'up'})),
+    down: () => dispatch(vote({kind, id, type: 'down'})),
   };
 };
 
