@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import AddComment from './AddComment';
 import Vote from '../Vote';
 
@@ -14,6 +16,14 @@ const Delete = ({ id, action}) =>
 ;
 
 
+const EditPost = ({ id }) =>
+  <Link to={`/posts/${id}/edit`}>
+    edit
+  </Link>
+;
+
+
+
 const Comment = ({ id, body, author, deleteComment }) =>
   <p>
     { author } says:
@@ -22,6 +32,7 @@ const Comment = ({ id, body, author, deleteComment }) =>
     </blockquote>
     <CommentVote id={id} />
     <Delete id={id} action={deleteComment} />
+    <hr />
   </p>
 ;
 
@@ -30,9 +41,18 @@ const PostView = ({ post, comments, deleteComment, deletePost }) =>
   <article>
     <section>
       <h2>{ post.title }</h2>
-      { post.body }
+      <div>
+        by { post.author }
+      </div>
+      <article>
+        { post.body }
+      </article>
+      <hr />
       <PostVote id={post.id} />
+      <hr />
+      <EditPost id={post.id} />
       <Delete id={post.id} action={deletePost} />
+      <hr />
     </section>
     <section>
       { comments && comments.map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
