@@ -1,13 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-
-const PostLink = ({ id, title }) =>
-  <li>
-    <Link to={`/posts/${id}`}>
-      { title }
-    </Link>
-  </li>
+import PostList from '../PostList/container';
 
 
 const CategoryPostsView = ({ category, posts }) => {
@@ -16,7 +9,7 @@ const CategoryPostsView = ({ category, posts }) => {
       <h2>
         { category.name }
       </h2>
-      { posts.map(post => <PostLink key={post.id} {...post} />) }
+      <PostList posts={posts} />
     </section>
   );
 };
