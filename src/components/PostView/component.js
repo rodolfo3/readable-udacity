@@ -37,12 +37,17 @@ const Comment = ({ id, body, author, deleteComment }) =>
 ;
 
 
+const formatDateTime = Intl.DateTimeFormat({}, {hour: 'numeric', minute: 'numeric', year: 'numeric', month: 'numeric', day: 'numeric'}).format;
+
+
 const PostView = ({ post, comments, deleteComment, deletePost }) =>
   <article>
     <section>
       <h2>{ post.title }</h2>
       <div>
         by { post.author }
+        <br/>
+        at { formatDateTime(post.timestamp) }
       </div>
       <article>
         { post.body }
