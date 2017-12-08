@@ -1,4 +1,6 @@
-import component from './component';
+import React from 'react';
+
+import PostView from './component';
 import { connect } from 'react-redux';
 
 import { withActions } from '../helpers';
@@ -10,11 +12,12 @@ const actions = [
 ];
 
 
-const extractPosts = (state, sortField = 'voteScore') => {
-  const posts = Object.values(state.posts.byId);
-  return posts.sort((a, b) => a[sortField] - b[sortField]).reverse();
-};
+const extractPosts = (state) => Object.values(state.posts.byId);
 
+
+const sortPosts = (posts, sortField) =>
+  posts.sort((a, b) => a[sortField] - b[sortField]).reverse();
+;
 
 const mapStateToProps = state => {
   return {
@@ -27,7 +30,22 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
+class PostViewController extends React.Component {
+  state = {
+    sortBy: 'voteScore',
+  }
+
+  render() {
+    return <PostView
+      posts={sortPosts(this.props.posts, this.state.sortBy)}
+      sort={ sortBy => this.setState({ sortBy }) }
+      sortedBy={this.state.sortBy}
+    />
+  }
+}
+
+
 export default
   connect(mapStateToProps, mapDispatchToProps)(
-    withActions(actions)(component)
+    withActions(actions)(PostViewController)
   );

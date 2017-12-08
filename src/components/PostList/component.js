@@ -10,10 +10,23 @@ const PostLink = ({ id, title, voteScore }) =>
   </li>
 
 
-const PostList = ({ posts }) =>
-  <ul>
-    { posts.map(post => <PostLink key={post.id} {...post} />) }
-  </ul>
+const SortOption = ({ field, label = null, sortedBy, sort }) =>
+  <label>
+    <input checked={sortedBy === field} type="checkbox" onClick={() => sort(field) } />
+    { label || field }
+  </label>
+;
+
+
+const PostList = ({ posts, sort, sortedBy }) =>
+  <div>
+    Sort by:
+      <SortOption field='voteScore' sortedBy={sortedBy} sort={sort} />
+      <SortOption field='timestamp' sortedBy={sortedBy} sort={sort} />
+    <ul>
+      { posts.map(post => <PostLink key={post.id} {...post} />) }
+    </ul>
+  </div>
 ;
 
 
