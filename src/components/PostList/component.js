@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const PostLink = ({ id, title }) =>
+const PostLink = ({ id, title, voteScore }) =>
   <li>
     <Link to={`/posts/${id}`}>
-      { title }
+      { title } ({ voteScore })
     </Link>
   </li>
 

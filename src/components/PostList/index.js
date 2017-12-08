@@ -10,9 +10,15 @@ const actions = [
 ];
 
 
+const extractPosts = (state, sortField = 'voteScore') => {
+  const posts = Object.values(state.posts.byId);
+  return posts.sort((a, b) => a[sortField] - b[sortField]).reverse();
+};
+
+
 const mapStateToProps = state => {
   return {
-    posts: Object.values(state.posts.byId),
+    posts: extractPosts(state),
   }
 };
 
