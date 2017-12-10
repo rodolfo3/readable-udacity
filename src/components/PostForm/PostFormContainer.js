@@ -1,10 +1,14 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import PostForm from './PostForm';
+
 import { withActions } from '../helpers';
 import { loadCategories } from '../../actions/categories';
-import { savePost } from '../../actions/posts';
-import PostForm from './PostForm';
+import { loadPost, savePost } from '../../actions/posts';
+
+
+const getPostById = (state, id) => state.posts && state.posts.byId[id];
 
 
 const mapDispatchToProps = (dispatch, { history }) => ({
@@ -14,15 +18,21 @@ const mapDispatchToProps = (dispatch, { history }) => ({
 });
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => {
+console.log(props);
+return {
   categories: state.categories,
-});
+  post: props.postId ? getPostById(state, props.postId) : {},
+}
+};
 
 
-const actions = [
-  loadCategories(),
-];
-
+const actions = (props) =>
+  Array.concat(
+    [loadCategories()],
+    props.postId ? [loadPost(props.postId)] : []
+  )
+;
 
 export default
   connect(mapStateToProps, mapDispatchToProps)(

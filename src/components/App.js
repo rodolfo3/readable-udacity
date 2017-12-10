@@ -6,8 +6,7 @@ import Home from './pages/Home';
 import Category from './pages/Category';
 import Post from './pages/Post';
 import CreatePost from './pages/CreatePost';
-
-import PostFormEdit from './PostFormEdit';
+import EditPost from './pages/EditPost';
 
 import GenericNotFound from './GenericNotFound';
 
@@ -22,7 +21,7 @@ class App extends Component {
 
           <Route exact path="/posts/new" component={CreatePost} />
           <Route exact path="/posts/:id" component={Post} />
-          <Route exact path="/posts/:id/edit" component={PostFormEdit} />
+          <Route exact path="/posts/:id/edit" component={EditPost} />
           <Route exact path='*' component={GenericNotFound} />
         </Switch>
       </BrowserRouter>
