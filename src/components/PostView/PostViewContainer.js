@@ -22,16 +22,18 @@ const actions = (props) => {
 
 
 const mapStateToProps = (state, props) => {
-  const { params } = props.match;
-  const { id } = params;
+  const { postId } = props;
 
-  const post = state.posts.byId[id];
-  const commentIds = state.comments.byPostId[id];
+  const post = state.posts.byId[postId];
+
+  console.log('state to props', post, postId, state.posts.byId);
+
+  const commentIds = state.comments.byPostId[postId];
 
   const comments = commentIds && commentIds.map(id => state.comments.byId[id]);
 
   return {
-    id,
+    id: postId,
     post,
     comments,
   };
