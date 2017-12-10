@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './helpers.css';
 
-const Loading = () => <strong>Loading...</strong>;
+
+const Loading = () =>
+  <div className="loading-wrapper">
+    <strong className="loading-text">
+      Loading...
+    </strong>
+  </div>
+;
 
 
 const buildActions = (actions, props) => {
