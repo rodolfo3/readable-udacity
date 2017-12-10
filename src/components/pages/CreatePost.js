@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Page from './Page';
+
 import PostForm from '../PostForm';
 
 
 const CreatePost = (props) =>
-  <div>
+  <Page>
     <Link to="/">&#8592; Home</Link>
     <PostForm history={props.history} />
-  </div>
+  </Page>
 ;
 
 

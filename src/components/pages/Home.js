@@ -1,12 +1,14 @@
 import React from 'react';
 
+import Page from './Page';
+
 import Actions from '../Actions';
 import CategoryList from '../CategoryList';
 import PostList from '../PostList';
 
 
 const Home = () =>
-  <div>
+  <Page>
     <section>
       <h2>Categories</h2>
       <CategoryList />
@@ -16,7 +18,7 @@ const Home = () =>
       <PostList />
     </section>
     <Actions />
-  </div>
+  </Page>
 ;
 
 
