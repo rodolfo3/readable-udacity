@@ -1,0 +1,34 @@
+.wrapper {
+  padding: 5px;
+  display: inline-block;
+}
+
+.score {
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+}
+
+.down:before, .up:before {
+  font-size: 20px;
+  transform: scale(-1, 1);
+  display: inline-block;
+}
+
+.up:before {
+  content: "\1F592";
+}
+
+.down:before {
+  content: "\1F593";
+  transform: scale(-1, 1);
+}
+
+.down, .up {
+  background: transparent;
+  border: 0;
+  font-size: 0;
+}
+
+.score {
+}
