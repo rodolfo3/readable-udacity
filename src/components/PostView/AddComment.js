@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import serializeForm from 'form-serialize';
 import { withActions } from '../helpers';
-
-
 import { saveComment } from '../../actions/comments';
+
+
+import './AddComment.css';
 
 
 const CommentForm = ({ submitForm }) => {
@@ -21,15 +22,15 @@ const CommentForm = ({ submitForm }) => {
   }
 
   return (
-    <form onSubmit={innerSubmitForm}>
-      <label>
-        Author
-        <input type="text" name="author" required />
+    <form onSubmit={innerSubmitForm} className='add-comment-form'>
+      <label className="add-comment-label">
+        Your name
+        <input className="add-comment-field" type="text" name="author" required />
       </label>
 
-      <label>
-        Comment body
-        <textarea name="body" required></textarea>
+      <label className="add-comment-label">
+        Comment
+        <textarea className="add-comment-field" name="body" required></textarea>
       </label>
 
       <input type="submit" />

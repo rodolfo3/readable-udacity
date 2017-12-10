@@ -1,0 +1,15 @@
+.add-comment-form {
+  display: block;
+  max-width: 250px;
+  margin: 35px;
+}
+
+.add-comment-label {
+  display: block;
+  margin: 15px 0;
+}
+
+.add-comment-field {
+  display: block;
+  width: 100%;
+}
