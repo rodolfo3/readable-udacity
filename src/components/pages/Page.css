@@ -5,3 +5,15 @@
   letter-spacing: 2px;
   background-color: gray;
 }
+
+
+.breadcrumb-link {
+  line-height: 30px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.breadcrumb-link:before {
+  content: "\2190";
+  padding-right: 10px;
+}

@@ -8,7 +8,7 @@ import PostList from '../PostList';
 
 
 const Home = () =>
-  <Page>
+  <Page breadcrumbs={[]} >
     <section>
       <h2>Categories</h2>
       <CategoryList />
