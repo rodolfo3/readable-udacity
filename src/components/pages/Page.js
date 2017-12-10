@@ -16,7 +16,9 @@ const Page = ({ children, breadcrumbs = null }) =>
         : <Link className="breadcrumb-link" to="/">Home</Link>
       }
     </div>
-    { children }
+    <main className="main-content">
+      { children }
+    </main>
   </div>
 ;
 

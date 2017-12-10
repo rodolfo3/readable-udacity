@@ -17,3 +17,7 @@
   content: "\2190";
   padding-right: 10px;
 }
+
+.main-content {
+  padding: 0 16px;
+}
