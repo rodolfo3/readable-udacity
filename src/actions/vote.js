@@ -9,11 +9,10 @@ const BY_TYPE = {
 }
 
 
-const computeVote = ({ kind, id, type }) => ({
-  type: BY_TYPE[type],
-  kind,
-  id,
-});
+const computeVote = ({ kind, response }) => {
+  console.log('computeVote', kind, response);
+  return BY_TYPE[kind](response);
+};
 
 
 export const vote = ({ kind, id, type }) =>
@@ -33,6 +32,6 @@ export const vote = ({ kind, id, type }) =>
       }
     )
     .then(response => response.json())
-    .then(response => dispatch(BY_TYPE[kind](response)))
+    .then(response => dispatch(computeVote({ kind, response })))
   }
 ;
