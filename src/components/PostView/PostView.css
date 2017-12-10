@@ -1,0 +1,50 @@
+.post-wrapper {
+  position: relative;
+  box-shadow: 2px 2px 5px 0 black;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.post-title {
+  margin-bottom: 0;
+}
+
+.post-author, .post-time {
+  padding-left: 30px;
+  color: gray;
+  font-size: 0.8em;
+}
+
+.post-body {
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.post-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.post-delete {
+  background-color: transparent;
+  font-size: 24px;
+  line-height: 1;
+  padding: 10px;
+  border: none;
+}
+
+.post-edit {
+  background-color: transparent;
+  font-size: 0;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+
+.post-edit:before {
+  content: "\270e";
+  padding: 10px;
+  font-size: 20px;
+  line-height: 1
+}

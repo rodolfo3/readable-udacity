@@ -5,19 +5,21 @@ import AddComment from './AddComment';
 import Comment from './Comment';
 import Vote from '../Vote';
 
+import './PostView.css';
+
 
 const PostVote = (props) => <Vote kind='posts' {...props} />;
 
 
 const Delete = ({ id, action}) =>
-  <button onClick={() => action(id)}>
+  <button onClick={() => action(id)} className="post-delete">
     &times;
   </button>
 ;
 
 
 const EditPost = ({ id }) =>
-  <Link to={`/posts/${id}/edit`}>
+  <Link to={`/posts/${id}/edit`} className="post-edit">
     edit
   </Link>
 ;
@@ -32,23 +34,23 @@ const formatDateTime = Intl.DateTimeFormat({}, {hour: 'numeric', minute: 'numeri
 
 
 const PostView = ({ post, comments, deleteComment, deletePost }) =>
-  <article>
+  <article className="post-wrapper">
     <section>
-      <h2>{ post.title }</h2>
-      <div>
+      <h2 className="post-title">{ post.title }</h2>
+      <div className="post-author">
         by { post.author }
-        <br/>
+      </div>
+      <div className="post-time">
         at { formatDateTime(post.timestamp) }
       </div>
-      <article>
+      <article className="post-body">
         { post.body }
       </article>
-      <hr />
       <PostVote id={post.id} voteScore={post.voteScore} />
-      <hr />
-      <EditPost id={post.id} />
-      <Delete id={post.id} action={deletePost} />
-      <hr />
+      <div className="post-actions">
+        <EditPost id={post.id} />
+        <Delete id={post.id} action={deletePost} />
+      </div>
     </section>
     <section>
       { comments && sortComments(comments).map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
