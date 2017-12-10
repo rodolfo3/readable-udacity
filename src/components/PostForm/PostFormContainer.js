@@ -18,13 +18,10 @@ const mapDispatchToProps = (dispatch, { history }) => ({
 });
 
 
-const mapStateToProps = (state, props) => {
-console.log(props);
-return {
+const mapStateToProps = (state, props) => ({
   categories: state.categories,
   post: props.postId ? getPostById(state, props.postId) : {},
-}
-};
+});
 
 
 const actions = (props) =>

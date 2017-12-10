@@ -25,9 +25,6 @@ const mapStateToProps = (state, props) => {
   const { postId } = props;
 
   const post = state.posts.byId[postId];
-
-  console.log('state to props', post, postId, state.posts.byId);
-
   const commentIds = state.comments.byPostId[postId];
 
   const comments = commentIds && commentIds.map(id => state.comments.byId[id]);

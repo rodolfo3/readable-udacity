@@ -27,7 +27,6 @@ export const withActions = acts => OriginalComponent => {
         const { dispatch } = this.props;
         Promise.all(actions.map(act => dispatch(act)))
           .then(() => {
-            console.log(this.props);
             this.setState({ loaded: true });
           })
       } else {
@@ -37,10 +36,8 @@ export const withActions = acts => OriginalComponent => {
 
     render() {
       if (this.state.loaded) {
-console.log('component', this.props);
         return <OriginalComponent {...this.props} />
       }
-console.log('loading');
       return <Loading />;
     }
   }

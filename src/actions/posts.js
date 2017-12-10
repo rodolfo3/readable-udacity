@@ -28,7 +28,6 @@ export const loadPost = (id) =>
     fetch(`${HOST}/api/posts/${id}`, { headers: { Authorization: getAuthorization() }})
       .then(response => response.json())
       .then(post => dispatch(loadedPost(post)))
-      .then(p => { console.log('loadPost', id); return p})
       .catch(err => console.error(err));
 ;
 
@@ -74,7 +73,6 @@ const persistPost = (postData) =>
 export const savePost = (postData) =>
   (dispatch) => {
     const errors = validatePost(postData);
-    console.log(errors);
     if (errors) {
       return dispatch(saveError(errors));
     } else {

@@ -45,10 +45,7 @@ export const loadPostComments = (postId) =>
       .then(comments => dispatch(loadedComments(comments)))
 
 export const saveComment = (commentData) =>
-  (dispatch) => {
-    console.log('persistComment', commentData);
-    return dispatch(persistComment(commentData));
-  }
+  (dispatch) => dispatch(persistComment(commentData))
 ;
 
 

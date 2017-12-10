@@ -10,14 +10,12 @@ const BY_TYPE = {
 
 
 const computeVote = ({ kind, response }) => {
-  console.log('computeVote', kind, response);
   return BY_TYPE[kind](response);
 };
 
 
 export const vote = ({ kind, id, type }) =>
   (dispatch) => {
-    console.log('VOTE');
     return fetch(
       `${HOST}/api/${kind}/${id}`,
       {
