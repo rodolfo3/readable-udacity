@@ -1,9 +1,10 @@
 import React from 'react';
+import './Page.css';
 
 
 const Page = ({ children }) =>
   <div>
-    <header>
+    <header className="header">
       My Reads
       <span aria-label="logo" role="img">&#128214;</span>
     </header>

@@ -1,0 +1,7 @@
+.header {
+  line-height: 50px;
+  padding: 0 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: gray;
+}
