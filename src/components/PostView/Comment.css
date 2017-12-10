@@ -1,0 +1,40 @@
+.comment-wrapper {
+  position: relative;
+  box-shadow: 2px 2px 5px 0 black;
+  padding: 5px;
+  margin: 30px 15px;
+}
+
+.comment-author {
+
+}
+
+.comment-quote {
+  quotes: "\201C" "\201D";
+}
+
+.comment-quote:before {
+  content: open-quote;
+  padding: 15px;
+  font-size: 30px;
+  color: gray;
+}
+
+.comment-quote:after {
+  content: close-quote;
+  padding: 15px;
+  font-size: 30px;
+  color: gray;
+}
+
+.comment-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background-color: transparent;
+  font-size: 20px;
+  line-height: 1;
+  padding: 10px;
+  border: none;
+}

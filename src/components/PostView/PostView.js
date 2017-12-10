@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import AddComment from './AddComment';
+import Comment from './Comment';
 import Vote from '../Vote';
 
 
 const PostVote = (props) => <Vote kind='posts' {...props} />;
-const CommentVote = (props) => <Vote kind='comments' {...props} />;
 
 
 const Delete = ({ id, action}) =>
@@ -20,20 +20,6 @@ const EditPost = ({ id }) =>
   <Link to={`/posts/${id}/edit`}>
     edit
   </Link>
-;
-
-
-
-const Comment = ({ id, body, author, voteScore, deleteComment }) =>
-  <p>
-    { author } says:
-    <blockquote>
-      { body }
-    </blockquote>
-    <CommentVote id={id} voteScore={voteScore} />
-    <Delete id={id} action={deleteComment} />
-    <hr />
-  </p>
 ;
 
 
