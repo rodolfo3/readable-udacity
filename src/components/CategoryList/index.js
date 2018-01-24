@@ -1,5 +1,6 @@
 import component from './component';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import { withActions } from '../helpers';
 import { loadCategories } from '../../actions/categories';
@@ -20,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default
-  connect(mapStateToProps, mapDispatchToProps)(
-    withActions(actions)(component)
-  );
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withActions(actions),
+)(component);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import serializeForm from 'form-serialize';
 import { withActions } from '../helpers';
@@ -62,9 +63,8 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 
-export default
-  withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(
-      withActions(actions)(component)
-    )
-  );
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+  withActions(actions),
+)(component);

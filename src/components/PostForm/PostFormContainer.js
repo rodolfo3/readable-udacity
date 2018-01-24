@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 import PostForm from './PostForm';
@@ -31,9 +32,8 @@ const actions = (props) =>
   )
 ;
 
-export default
-  connect(mapStateToProps, mapDispatchToProps)(
-    withRouter(
-      withActions(actions)(PostForm)
-    )
-  );
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withActions(actions),
+)(PostForm);

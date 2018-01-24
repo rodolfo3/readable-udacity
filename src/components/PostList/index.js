@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import PostViewContainer from './container';
 import { withActions } from '../helpers';
@@ -24,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default
-  connect(mapStateToProps, mapDispatchToProps)(
-    withActions(actions)(PostViewContainer)
-  );
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withActions(actions),
+)(PostViewContainer);

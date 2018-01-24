@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { withActions } from '../helpers';
 
@@ -47,9 +48,8 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 
-export default
-  connect(mapStateToProps, mapDispatchToProps)(
-    withRouter(
-      withActions(actions)(PostView)
-    )
-  );
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withActions(actions),
+)(PostView);
