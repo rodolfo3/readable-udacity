@@ -26,6 +26,7 @@ export const withActions = acts => OriginalComponent => {
   class WithActioncComponent extends Component {
     state = {
       loaded: false,
+      error: null,
     }
 
     componentDidMount() {
@@ -37,6 +38,9 @@ export const withActions = acts => OriginalComponent => {
           .then(() => {
             this.setState({ loaded: true });
           })
+          .catch(error => {
+            this.setState({ error, loaded: true });
+          });
       } else {
           this.setState({ loaded: true });
       }
@@ -44,7 +48,7 @@ export const withActions = acts => OriginalComponent => {
 
     render() {
       if (this.state.loaded) {
-        return <OriginalComponent {...this.props} />
+        return <OriginalComponent {...this.props} error={this.state.error} />
       }
       return <Loading />;
     }
