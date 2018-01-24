@@ -7,10 +7,10 @@ import { withActions } from '../helpers';
 import { saveComment } from '../../actions/comments';
 
 
-import './AddComment.css';
+import './EditComment.css';
 
 
-const CommentForm = ({ submitForm }) => {
+const CommentForm = ({ submitForm, comment }) => {
   const innerSubmitForm = (ev) => {
     const { target } = ev;
     submitForm(
@@ -24,14 +24,22 @@ const CommentForm = ({ submitForm }) => {
 
   return (
     <form onSubmit={innerSubmitForm} className='add-comment-form'>
+      { comment.id && <input className="comment-form-field" type="hidden" name="id" value={comment.id} /> }
+
       <label className="add-comment-label">
         Your name
-        <input className="add-comment-field" type="text" name="author" required />
+        <input
+          className="add-comment-field"
+          type="text"
+          name="author"
+          required
+          defaultValue={comment.author}
+        />
       </label>
 
       <label className="add-comment-label">
         Comment
-        <textarea className="add-comment-field" name="body" required></textarea>
+        <textarea className="add-comment-field" name="body" required>{ comment.body }</textarea>
       </label>
 
       <input type="submit" />
@@ -46,6 +54,10 @@ const component = CommentForm;
 
 const mapStateToProps = (state, props) => {
   return {
+    comment: {
+      author: '',
+      body: '',
+    },
   };
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AddComment from './AddComment';
+import EditComment from './EditComment';
 import Comment from './Comment';
 import Vote from '../Vote';
 
@@ -82,7 +82,7 @@ const PostView = ({ post, error, comments, deleteComment, deletePost }) =>
       <section>
         { comments && sortComments(comments).map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
       </section>
-      <AddComment />
+      <EditComment />
     </article>
   )
 ;
