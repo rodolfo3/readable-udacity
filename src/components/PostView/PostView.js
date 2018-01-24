@@ -33,30 +33,58 @@ const sortComments = (comments, sortField = 'voteScore') =>
 const formatDateTime = Intl.DateTimeFormat({}, {hour: 'numeric', minute: 'numeric', year: 'numeric', month: 'numeric', day: 'numeric'}).format;
 
 
-const PostView = ({ post, comments, deleteComment, deletePost }) =>
-  <article className="post-wrapper">
-    <section>
-      <h2 className="post-title">{ post.title }</h2>
-      <div className="post-author">
-        by { post.author }
+const RenderError = ({ error }) => {
+  if (error && error.response && error.response.status === 404) {
+    return (
+      <div>
+        Not Found!
       </div>
-      <div className="post-time">
-        at { formatDateTime(post.timestamp) }
-      </div>
-      <article className="post-body">
-        { post.body }
-      </article>
-      <PostVote id={post.id} voteScore={post.voteScore} />
-      <div className="post-actions">
-        <EditPost id={post.id} />
-        <Delete id={post.id} action={deletePost} />
-      </div>
-    </section>
-    <section>
-      { comments && sortComments(comments).map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
-    </section>
-    <AddComment />
-  </article>
+    );
+  }
+
+  return (
+    <div>
+      Internal error:
+      <pre>
+        { JSON.stringify(error.message, null, '  ') };
+      </pre>
+      Please fill a bug report at
+      <a href="https://github.com/rodolfo3/readable-udacity/issues">
+        https://github.com/rodolfo3/readable-udacity/issues
+      </a>
+    </div>
+  );
+};
+
+
+const PostView = ({ post, error, comments, deleteComment, deletePost }) =>
+  error
+  ? <RenderError error={error} />
+  : (
+    <article className="post-wrapper">
+      <section>
+        <h2 className="post-title">{ post.title }</h2>
+        <div className="post-author">
+          by { post.author }
+        </div>
+        <div className="post-time">
+          at { formatDateTime(post.timestamp) }
+        </div>
+        <article className="post-body">
+          { post.body }
+        </article>
+        <PostVote id={post.id} voteScore={post.voteScore} />
+        <div className="post-actions">
+          <EditPost id={post.id} />
+          <Delete id={post.id} action={deletePost} />
+        </div>
+      </section>
+      <section>
+        { comments && sortComments(comments).map(c => <Comment key={c.id} deleteComment={deleteComment} {...c} />) }
+      </section>
+      <AddComment />
+    </article>
+  )
 ;
 
 

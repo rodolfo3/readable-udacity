@@ -22,7 +22,7 @@ const actions = (props) => {
 
 
 const mapStateToProps = (state, props) => {
-  const { postId } = props;
+  const { error, postId } = props;
 
   const post = state.posts.byId[postId];
   const commentIds = state.comments.byPostId[postId];
@@ -33,6 +33,7 @@ const mapStateToProps = (state, props) => {
     id: postId,
     post,
     comments,
+    error
   };
 };
 
