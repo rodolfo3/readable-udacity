@@ -3,26 +3,9 @@ import { Link } from 'react-router-dom';
 
 import EditComment from './EditComment';
 import Comment from './Comment';
-import Vote from '../Vote';
 
 import './PostView.css';
-
-
-const PostVote = (props) => <Vote kind='posts' {...props} />;
-
-
-const Delete = ({ id, action}) =>
-  <button onClick={() => action(id)} className="post-delete">
-    &times;
-  </button>
-;
-
-
-const EditPost = ({ id }) =>
-  <Link to={`/posts/${id}/edit`} className="post-edit">
-    edit
-  </Link>
-;
+import { PostVote, DeletePost, EditPost } from '../PostCommons';
 
 
 const sortComments = (comments, sortField = 'voteScore') =>
@@ -76,7 +59,7 @@ const PostView = ({ post, error, comments, deleteComment, deletePost }) =>
         <PostVote id={post.id} voteScore={post.voteScore} />
         <div className="post-actions">
           <EditPost id={post.id} />
-          <Delete id={post.id} action={deletePost} />
+          <DeletePost id={post.id} action={deletePost} />
         </div>
       </section>
       <section>
