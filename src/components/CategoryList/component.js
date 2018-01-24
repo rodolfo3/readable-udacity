@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const CategoryItem = ({ name, path }) =>
   <li>
-    <Link to={`/categories/${path}`}>
+    <Link to={`/${path}`}>
         name={name}; path={path}
     </Link>
   </li>
