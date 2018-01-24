@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import PostView from './component';
+import { deletePost } from '../../actions/posts';
 
 
 const sortPosts = (posts, sortField) =>
@@ -17,9 +20,17 @@ class PostViewContainer extends React.Component {
       posts={sortPosts(this.props.posts, this.state.sortBy)}
       sort={ sortBy => this.setState({ sortBy }) }
       sortedBy={this.state.sortBy}
+      deletePost={this.props.deletePost}
     />
   }
 }
 
 
-export default PostViewContainer;
+const mapStateToProps = (state, props) => props;
+
+const mapDispatchToProps = (dispatch, props) => ({
+  deletePost: (id) => dispatch(deletePost({ id })),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostViewContainer);
