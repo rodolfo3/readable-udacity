@@ -23,26 +23,41 @@ const loadedPosts = (posts) => ({
 });
 
 
+class RequestError extends Error {
+  constructor(message, response) {
+    super(message);
+    this.response = response;
+  }
+}
+
+
+const fetchJson = url => (
+  fetch(url, { headers: { Authorization: getAuthorization() }})
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(msg => { throw new RequestError(msg, response); });
+      }
+      return response.json();
+    })
+);
+
+
 export const loadPost = (id) =>
   (dispatch) =>
-    fetch(`${HOST}/api/posts/${id}`, { headers: { Authorization: getAuthorization() }})
-      .then(response => response.json())
+    fetchJson(`${HOST}/api/posts/${id}`)
       .then(post => dispatch(loadedPost(post)))
-      .catch(err => console.error(err));
 ;
 
 export const loadCategoryPosts = (categoryPath) =>
   (dispatch) =>
-    fetch(`${HOST}/api/${categoryPath}/posts`, { headers: { Authorization: getAuthorization() }})
-      .then(response => response.json())
+    fetchJson(`${HOST}/api/${categoryPath}/posts`)
       .then(ps => dispatch(loadedCategoryPosts(categoryPath, ps)))
 ;
 
 
 export const loadAllPosts = () =>
   (dispatch) =>
-    fetch(`${HOST}/api/posts`, { headers: { Authorization: getAuthorization() }})
-      .then(response => response.json())
+    fetchJson(`${HOST}/api/posts`)
       .then(ps => dispatch(loadedPosts(ps)))
 ;
 
