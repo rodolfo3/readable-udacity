@@ -1,3 +1,18 @@
+# Up and Running
+
+## To install dependencies, the usual
+
+`npm install`
+
+## To start the api server (at port 3001):
+
+`npm run start:server`
+
+## To start react (dev mode)
+
+`npm start`
+
+
 # Redux
 ./actions
 ./reducers
