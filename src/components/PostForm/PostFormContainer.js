@@ -26,10 +26,7 @@ const mapStateToProps = (state, props) => ({
 
 
 const actions = (props) =>
-  Array.concat(
-    [loadCategories()],
-    props.postId ? [loadPost(props.postId)] : []
-  )
+  [loadCategories(), ...(props.postId ? [loadPost(props.postId)] : [])]
 ;
 
 export default compose(
