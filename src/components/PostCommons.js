@@ -15,8 +15,8 @@ export const DeletePost = ({ id, action}) =>
 ;
 
 
-export const EditPost = ({ id }) =>
-  <Link to={`/posts/${id}/edit`} className="post-edit">
+export const EditPost = ({ category, id }) =>
+  <Link to={`/${category}/${id}/edit`} className="post-edit">
     edit
   </Link>
 ;

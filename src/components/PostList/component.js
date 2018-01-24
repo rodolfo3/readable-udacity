@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { PostVote, DeletePost, EditPost } from '../PostCommons';
 
 
-const PostLink = ({ id, author, title, commentCount, voteScore, deletePost }) =>
+const PostLink = ({ id, category, author, title, commentCount, voteScore, deletePost }) =>
   <li>
-    <Link to={`/posts/${id}`}>
+    <Link to={`/${category}/${id}`}>
       { title }
     </Link>
 
@@ -20,7 +20,7 @@ const PostLink = ({ id, author, title, commentCount, voteScore, deletePost }) =>
     <PostVote id={id} voteScore={voteScore} />
 
     <br/>
-    <EditPost id={id} />
+    <EditPost category={category} id={id} />
     <DeletePost id={id} action={deletePost} />
 
     <hr/>
@@ -40,6 +40,7 @@ const PostList = ({ posts, sort, sortedBy, deletePost }) =>
     Sort by:
       <SortOption field='voteScore' sortedBy={sortedBy} sort={sort} />
       <SortOption field='timestamp' sortedBy={sortedBy} sort={sort} />
+    { JSON.stringify(posts[0]) }
     <ul>
       { posts.map(post => <PostLink key={post.id} {...post} deletePost={deletePost} />) }
     </ul>

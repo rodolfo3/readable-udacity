@@ -18,10 +18,10 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/:path" component={Category} />
+          <Route exact path="/:path/:id" component={Post} />
+          <Route exact path="/:path/:id/edit" component={EditPost} />
 
           <Route exact path="/posts/new" component={CreatePost} />
-          <Route exact path="/posts/:id" component={Post} />
-          <Route exact path="/posts/:id/edit" component={EditPost} />
           <Route exact path='*' component={GenericNotFound} />
         </Switch>
       </BrowserRouter>

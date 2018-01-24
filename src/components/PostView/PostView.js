@@ -58,7 +58,7 @@ const PostView = ({ post, error, comments, deleteComment, deletePost }) =>
         </article>
         <PostVote id={post.id} voteScore={post.voteScore} />
         <div className="post-actions">
-          <EditPost id={post.id} />
+          <EditPost id={post.id} catgory={post.category} />
           <DeletePost id={post.id} action={deletePost} />
         </div>
       </section>
