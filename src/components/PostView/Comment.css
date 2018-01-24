@@ -27,14 +27,32 @@
   color: gray;
 }
 
-.comment-delete {
+.comment-actions {
   position: absolute;
   top: 0;
   right: 0;
+}
 
+.comment-delete {
   background-color: transparent;
   font-size: 20px;
   line-height: 1;
   padding: 10px;
   border: none;
+}
+
+.comment-edit {
+
+  background-color: transparent;
+  font-size: 0;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+
+.comment-edit:before {
+  content: "\270e";
+  padding: 10px;
+  font-size: 20px;
+  line-height: 1
 }

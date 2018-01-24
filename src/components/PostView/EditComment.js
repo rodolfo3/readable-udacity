@@ -54,10 +54,10 @@ const component = CommentForm;
 
 const mapStateToProps = (state, props) => {
   return {
-    comment: {
+    comment: props.comment || ({
       author: '',
       body: '',
-    },
+    }),
   };
 };
 
@@ -67,9 +67,11 @@ const mapDispatchToProps = (dispatch, props) => {
   const { id } = params;
   const parentId = id;
 
+  const onSave = props.onSave || ((r) => r);
+
   return {
     submitForm: (formData) => (
-      dispatch(saveComment({...formData, parentId: parentId}))
+      dispatch(saveComment({...formData, parentId: parentId})).then(onSave)
     )
   }
 };

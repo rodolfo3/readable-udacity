@@ -26,6 +26,10 @@ const byPostId = (state = {}, action) => {
       const { comment } = action;
       const { parentId } = comment;
 
+      if ((state[parentId] || []).indexOf(comment.id) > -1) {
+        return state;
+      }
+
       return {
         ...state,
         [parentId]: [...state[parentId] || [], comment.id],
