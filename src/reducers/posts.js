@@ -8,12 +8,10 @@ const byId = (state = {}, action) => {
       const { post } = action;
       const { id } = post;
 
-      return Object.keys(state)
-        .filter(post => post.id !== id)
-        .reduce((obj, key) => {
-          obj[key] = state[key];
-          return obj;
-        }, {});
+      const newState = {...state};
+      delete newState[post.id];  // TODO is this ok to remove the post from the state?
+      return newState;
+
     case LOADED:
     case SAVED:
       const newPosts = action.posts.reduce((acc, p) => ({...acc, [p.id]: p}), {});
@@ -29,10 +27,14 @@ const byCategory = (state = {}, action) => {
     case DELETED:
       const { post } = action;
       const { category }  = post;
-      return {
-        ...state,
-        [category]: state[category].filter(i => i !== post.id),
-      };
+      if (state[category]) {
+        return {
+          ...state,
+          [category]: state[category].filter(i => i !== post.id),
+        };
+      } else {
+        return state;
+      }
     case SAVED:
     case LOADED:
       if (action.categoryPath) {

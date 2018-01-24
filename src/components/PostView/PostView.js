@@ -46,7 +46,7 @@ const RenderError = ({ error }) => {
     <div>
       Internal error:
       <pre>
-        { JSON.stringify(error.message, null, '  ') };
+        { JSON.stringify(error && error.message, null, '  ') };
       </pre>
       Please fill a bug report at
       <a href="https://github.com/rodolfo3/readable-udacity/issues">
@@ -56,9 +56,9 @@ const RenderError = ({ error }) => {
   );
 };
 
-
+// TODO I need to handle `!post` here because the store is updated before the `history.push()` runs (inside deletePost). How is the right way to handle it?
 const PostView = ({ post, error, comments, deleteComment, deletePost }) =>
-  error
+  (error || !post)
   ? <RenderError error={error} />
   : (
     <article className="post-wrapper">
