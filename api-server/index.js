@@ -135,6 +135,7 @@ app.get('/api/categories', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -148,6 +149,7 @@ app.get('/api/:category/posts', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -161,6 +163,7 @@ app.get('/api/posts', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                  error: 'There was an error.'
@@ -175,6 +178,7 @@ app.post('/api/posts', bodyParser.json(), (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                  error: 'There was an error.'
@@ -188,6 +192,7 @@ app.get('/api/posts/:id', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -202,6 +207,7 @@ app.delete('/api/posts/:id', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -217,6 +223,7 @@ app.post('/api/posts/:id', bodyParser.json(), (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -230,6 +237,7 @@ app.put('/api/posts/:id', bodyParser.json(), (req, res) => {
       .then(
         (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -243,6 +251,7 @@ app.get('/api/posts/:id/comments', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -256,6 +265,7 @@ app.get('/api/comments/:id', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -269,6 +279,7 @@ app.put('/api/comments/:id', bodyParser.json(), (req, res) => {
       .then(
         (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -282,6 +293,7 @@ app.post('/api/comments', bodyParser.json(), (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -296,6 +308,7 @@ app.post('/api/comments/:id', bodyParser.json(), (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'
@@ -309,6 +322,7 @@ app.delete('/api/comments/:id', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
+              if (error === '404') return res.status(404).send({error: 'Not Found'});
               console.error(error)
               res.status(500).send({
                   error: 'There was an error.'

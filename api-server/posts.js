@@ -45,13 +45,17 @@ function getByCategory (token, category) {
 }
 
 function get (token, id) {
-  return new Promise((res) => {
+  return new Promise((res, reject) => {
     const posts = getData(token)
-    res(
-      posts[id].deleted
-        ? {}
-        : posts[id]
-    )
+    if (posts[id]) {
+      res(
+        posts[id].deleted
+          ? {}
+          : posts[id]
+      )
+    } else {
+      reject('404');
+    }
   })
 }
 
