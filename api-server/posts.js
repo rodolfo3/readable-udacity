@@ -50,7 +50,7 @@ function get (token, id) {
     if (posts[id]) {
       res(
         posts[id].deleted
-          ? {}
+          ? reject('404')  // deleted posts should not be accessible
           : posts[id]
       )
     } else {
