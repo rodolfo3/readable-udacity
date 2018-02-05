@@ -9,7 +9,7 @@
   margin-bottom: 0;
 }
 
-.post-author, .post-time {
+.post-author, .post-time, .post-comments-count {
   padding-left: 30px;
   color: gray;
   font-size: 0.8em;

@@ -53,6 +53,9 @@ const PostView = ({ post, error, comments, deleteComment, deletePost }) =>
         <div className="post-time">
           at { formatDateTime(post.timestamp) }
         </div>
+        <div className="post-comments-count">
+          { post.commentCount ? `${post.commentCount} comments` : 'no comments yet' }
+        </div>
         <article className="post-body">
           { post.body }
         </article>
