@@ -17,11 +17,11 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/posts/new" component={CreatePost} />
           <Route exact path="/:path" component={Category} />
           <Route exact path="/:path/:id" component={Post} />
           <Route exact path="/:path/:id/edit" component={EditPost} />
 
-          <Route exact path="/posts/new" component={CreatePost} />
           <Route exact path='*' component={GenericNotFound} />
         </Switch>
       </BrowserRouter>
