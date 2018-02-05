@@ -40,7 +40,6 @@ const PostList = ({ posts, sort, sortedBy, deletePost }) =>
     Sort by:
       <SortOption field='voteScore' sortedBy={sortedBy} sort={sort} />
       <SortOption field='timestamp' sortedBy={sortedBy} sort={sort} />
-    { JSON.stringify(posts[0]) }
     <ul>
       { posts.map(post => <PostLink key={post.id} {...post} deletePost={deletePost} />) }
     </ul>
